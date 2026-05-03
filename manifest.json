@@ -1,0 +1,12 @@
+{
+  "background_color": "rgb(253, 240, 244)",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Yassmine Golden Care",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "YGC",
+  "start_url": "/",
+  "theme_color": "rgb(212, 116, 142)",
+  "description": "إدارة عيادة Yassmine Golden Care"
+}
