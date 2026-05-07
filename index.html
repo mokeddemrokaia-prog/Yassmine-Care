@@ -1,211 +1,343 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yassmine Golden Care ✦ إدارة العيادة</title>
-    
-    <link rel="manifest" href="data:application/json,{
-      %22name%22: %22Yassmine Golden Care%22,
-      %22short_name%22: %22YGC%22,
-      %22description%22: %22إدارة عيادة Yassmine Golden Care%22,
-      %22start_url%22: %22.%22,
-      %22display%22: %22standalone%22,
-      %22background_color%22: %22%23fdf0f4%22,
-      %22theme_color%22: %22%23d4748e%22,
-      %22orientation%22: %22portrait%22,
-      %22icons%22: [{%22src%22:%22https://via.placeholder.com/192x192/d4748e/ffffff?text=YGC%22,%22sizes%22:%22192x192%22,%22type%22:%22image/png%22}]
-    }">
+<link rel="manifest" href="data:application/json,{
+  %22name%22: %22Yassmine Golden Care%22,
+  %22short_name%22: %22YGC%22,
+  %22description%22: %22إدارة عيادة Yassmine Golden Care%22,
+  %22start_url%22: %22.%22,
+  %22display%22: %22standalone%22,
+  %22background_color%22: %22%23fdf0f4%22,
+  %22theme_color%22: %22%23d4748e%22,
+  %22orientation%22: %22portrait%22,
+  %22icons%22: [{%22src%22:%22https://via.placeholder.com/192x192/d4748e/ffffff?text=YGC%22,%22sizes%22:%22192x192%22,%22type%22:%22image/png%22},{%22src%22:%22https://via.placeholder.com/512x512/d4748e/ffffff?text=YGC%22,%22sizes%22:%22512x512%22,%22type%22:%22image/png%22}]
+}">
+<meta name="theme-color" content="#d4748e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Yassmine Golden Care">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yassmine Golden Care ✦ إدارة العيادة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose:#d4748e;--rose-deep:#b85572;--rose-light:#f5d0dc;
+  --rose-pale:#fdf0f4;--rose-blush:#fce8ef;
+  --gold:#c9a96e;--gold-deep:#a07840;--gold-light:#f0e0c0;
+  --plum:#7a4d62;--mint:#4db89a;
+  --bg:#faf6f8;--surface:#ffffff;--surface2:#fdf5f8;
+  --text:#2d1a24;--text-mid:#6b3d52;--text-soft:#b08898;
+  --border:rgba(212,116,142,.18);
+  --shadow:0 4px 24px rgba(180,80,110,.10);
+  --shadow-lg:0 12px 48px rgba(180,80,110,.16);
+  --radius:16px;--radius-sm:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden; padding-bottom: 70px;}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+/* LOGIN SCREEN */
+#login-screen{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#fdf0f4 0%,#fce8ef 60%,#f0e0c0 100%);
+  padding:24px;
+}
+.login-card{
+  background:white;border-radius:28px;padding:40px 36px;
+  max-width:420px;width:100%;
+  box-shadow:var(--shadow-lg);border:1px solid var(--border);
+  text-align:center;
+}
 
-    <style>
-        :root {
-            --rose:#d4748e; --rose-deep:#b85572; --rose-light:#f5d0dc;
-            --rose-pale:#fdf0f4; --rose-blush:#fce8ef;
-            --gold:#c9a96e; --gold-deep:#a07840; --gold-light:#f0e0c0;
-            --plum:#7a4d62; --mint:#4db89a;
-            --bg:#faf6f8; --surface:#ffffff; --surface2:#fdf5f8;
-            --text:#2d1a24; --text-mid:#6b3d52; --text-soft:#b08898;
-            --border:rgba(212,116,142,.18);
-            --shadow:0 4px 24px rgba(180,80,110,.10);
-            --shadow-lg:0 12px 48px rgba(180,80,110,.16);
-            --radius:16px; --radius-sm:10px;
-        }
+/* APP LAYOUT */
+#app { display: none; }
+.content { padding: 20px; }
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Tajawal', sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+/* BOTTOM NAVIGATION */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+  z-index: 1000;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.nav-btn i { font-size: 20px; margin-bottom: 4px; }
+.nav-btn.active { color: var(--rose-deep); font-weight: bold; }
 
-        /* LAYOUT */
-        #app { display:flex; min-height:100vh; }
-        
-        /* SIDEBAR - Desktop Only */
-        .sidebar {
-            width: 255px; flex-shrink: 0;
-            background: linear-gradient(170deg, var(--rose-deep) 0%, #9a3058 40%, var(--plum) 100%);
-            position: fixed; top: 0; right: 0; height: 100vh;
-            z-index: 100; display: flex; flex-direction: column;
-            transition: transform .3s;
-        }
+/* Floating Add Button */
+.fab {
+  width: 50px;
+  height: 50px;
+  background: var(--rose-deep);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(212,116,142,0.4);
+  margin-top: -30px;
+  border: 4px solid white;
+}
 
-        .sidebar-brand { padding: 24px 20px 18px; border-bottom: 1px solid rgba(255,255,255,.12); text-align: center; }
-        .brand-logo { width: 120px; filter: brightness(0) invert(1); margin-bottom: 8px; }
-        
-        .sidebar-nav { flex: 1; padding: 14px 10px; }
-        .nav-item {
-            display: flex; align-items: center; gap: 10px;
-            padding: 12px 14px; border-radius: var(--radius-sm);
-            color: rgba(255,255,255,.7); font-size: .88rem; font-weight: 500;
-            cursor: pointer; transition: all .2s; margin-bottom: 3px;
-            border: none; background: none; width: 100%; text-align: right;
-            font-family: 'Tajawal', sans-serif;
-        }
-        .nav-item:hover, .nav-item.active { background: rgba(255,255,255,.2); color: #fff; }
+/* ELEMENTS FROM ORIGINAL CODE */
+.stats-bar{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.stat-card{background:#fff;border-radius:var(--radius);padding:15px;border:1px solid var(--border);box-shadow:var(--shadow);text-align:center;}
+.stat-value{font-size:1.4rem;font-weight:700;color:var(--rose-deep);display:block}
+.stat-label{font-size:.7rem;color:var(--text-soft)}
 
-        .main { flex: 1; margin-right: 255px; min-height: 100vh; display: flex; flex-direction: column; transition: margin 0.3s; }
-        
-        /* TOPBAR */
-        .topbar {
-            background: #fff; border-bottom: 1px solid var(--border);
-            padding: 14px 24px; display: flex; align-items: center;
-            justify-content: space-between; position: sticky; top: 0; z-index: 50;
-        }
+.panel{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden}
+.panel-head{padding:12px 15px;background:var(--rose-pale);border-bottom:1px solid var(--border);font-weight:bold;color:var(--rose-deep)}
+.panel-body{padding:15px}
 
-        .content { padding: 24px; flex: 1; }
-        .page { display: none; animation: fadeIn .3s ease; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.form-group{margin-bottom:12px; display:flex; flex-direction:column; gap:5px;}
+.form-group label{font-size:.8rem; font-weight:600; color:var(--text-mid)}
+.form-control{padding:10px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--rose-pale); font-family:'Tajawal'}
 
-        /* BOTTOM NAV - Mobile Only */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: white; display: none; justify-content: space-around;
-            padding: 10px 0; border-top: 1px solid var(--border); z-index: 200;
-        }
-        .bottom-nav-item {
-            display: flex; flex-direction: column; align-items: center;
-            color: var(--text-soft); cursor: pointer; font-size: 0.7rem;
-        }
-        .bottom-nav-item.active { color: var(--rose-deep); }
-        .bottom-nav-item i { font-size: 1.2rem; margin-bottom: 2px; }
+.btn-primary{width:100%; padding:12px; background:var(--rose-deep); color:white; border:none; border-radius:var(--radius-sm); font-weight:bold; cursor:pointer;}
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .sidebar { transform: translateX(100%); display: none; }
-            .main { margin-right: 0; }
-            .bottom-nav { display: flex; }
-            .topbar { padding: 10px 15px; }
-            .content { padding-bottom: 80px; }
-        }
+/* Table Styling */
+.table-wrap{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size: 0.85rem;}
+th{background:var(--rose-pale); padding:10px; text-align:right; color:var(--rose-deep)}
+td{padding:10px; border-bottom:1px solid var(--border)}
 
-        /* Stats & Cards */
-        .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-bottom: 20px; }
-        .stat-card { background: #fff; padding: 15px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
-        .stat-value { font-size: 1.4rem; font-weight: bold; color: var(--rose-deep); }
-    </style>
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
+<div id="login-screen">
+  <div class="login-card">
+    <h2 class="login-title">Yassmine Golden Care</h2>
+    <p class="login-sub">مرحباً بكِ دكتورة ياسمين</p>
+    <input type="email" id="login-email" class="login-input" placeholder="البريد الإلكتروني" value="dr.yassmine@clinic.com">
+    <input type="password" id="login-pass" class="login-input" placeholder="كلمة المرور" value="123456">
+    <button class="btn-login" onclick="handleLogin()">دخول العيادة</button>
+  </div>
+</div>
+
 <div id="app">
-    <aside class="sidebar">
-        <div class="sidebar-brand">
-            <h2 style="color: white; font-family: 'Playfair Display';">YGC</h2>
-            <p class="brand-sub">Golden Care</p>
-        </div>
-        <nav class="sidebar-nav">
-            <button class="nav-item active" onclick="showPage('home')">
-                <i class="fa-solid fa-house"></i> الرئيسية
-            </button>
-            <button class="nav-item" onclick="showPage('patients')">
-                <i class="fa-solid fa-user-group"></i> المرضى
-            </button>
-            <button class="nav-item" onclick="showPage('sessions')">
-                <i class="fa-solid fa-calendar-check"></i> الجلسات
-            </button>
-            <button class="nav-item" onclick="showPage('settings')">
-                <i class="fa-solid fa-gear"></i> الإعدادات
-            </button>
-        </nav>
-    </aside>
-
-    <main class="main">
-        <header class="topbar">
-            <div class="topbar-title">لوحة التحكم</div>
-            <div class="topbar-actions">
-                <button class="btn-icon"><i class="fa-solid fa-bell"></i></button>
-                <button class="btn-icon"><i class="fa-solid fa-user"></i></button>
+    <div class="content">
+        
+        <div id="page-home" class="page active">
+            <div class="panel">
+                <div class="panel-body" style="text-align: center;">
+                    <h2 style="color: var(--rose-deep);">عيادة ياسمين</h2>
+                    <p style="color: var(--text-soft);">إدارة الجلسات والمرضى بكل سهولة</p>
+                </div>
             </div>
-        </header>
 
-        <div class="content">
-            <section id="home" class="page active">
-                <div class="stats-bar">
-                    <div class="stat-card">
-                        <div class="stat-label">إجمالي المرضى</div>
-                        <div class="stat-value">124</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">جلسات اليوم</div>
-                        <div class="stat-value">8</div>
+            <div class="stats-bar">
+                <div class="stat-card">
+                    <span class="stat-value" id="count-patients">0</span>
+                    <span class="stat-label">إجمالي المرضى</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="count-sessions">0</span>
+                    <span class="stat-label">جلسات اليوم</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-patients" class="page">
+            <div class="panel">
+                <div class="panel-head">قائمة المرضى</div>
+                <div class="panel-body">
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>الاسم</th>
+                                    <th>الهاتف</th>
+                                    <th>الإجراء</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patients-list">
+                                </tbody>
+                        </table>
                     </div>
                 </div>
-                <h3>أهلاً بك في عيادة ياسمين</h3>
-                <p>هنا تظهر ملخصات العمل والتقارير السريعة.</p>
-            </section>
-
-            <section id="patients" class="page">
-                <h3>قائمة المرضى</h3>
-                <p>إدارة بيانات المرضى الجدد والحاليين.</p>
-            </section>
-
-            <section id="sessions" class="page">
-                <h3>سجل الجلسات</h3>
-                <p>متابعة المواعيد والجلسات العلاجية.</p>
-            </section>
-
-            <section id="settings" class="page">
-                <h3>الإعدادات</h3>
-                <p>تغيير إعدادات الحساب والعيادة.</p>
-            </section>
+            </div>
         </div>
-    </main>
+
+        <div id="page-add" class="page">
+            <div class="panel">
+                <div class="panel-head">إضافة مريضة جديدة</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>اسم المريضة</label>
+                        <input type="text" id="p-name" class="form-control" placeholder="الاسم الكامل">
+                    </div>
+                    <div class="form-group">
+                        <label>رقم الهاتف</label>
+                        <input type="tel" id="p-phone" class="form-control" placeholder="05xxxxxxxx">
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ الميلاد</label>
+                        <input type="date" id="p-dob" class="form-control">
+                    </div>
+                    <button class="btn-primary" onclick="savePatient()">حفظ المريضة</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-sessions" class="page">
+            <div class="panel">
+                <div class="panel-head">تسجيل جلسة</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>اختر المريضة</label>
+                        <select id="session-patient" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>سعر الجلسة</label>
+                        <input type="number" id="session-price" class="form-control" placeholder="0.00">
+                    </div>
+                    <button class="btn-primary" onclick="saveSession()">تسجيل الجلسة</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <nav class="bottom-nav">
-        <div class="bottom-nav-item active" onclick="showPage('home')">
-            <i class="fa-solid fa-house"></i><span>الرئيسية</span>
-        </div>
-        <div class="bottom-nav-item" onclick="showPage('patients')">
-            <i class="fa-solid fa-user-group"></i><span>المرضى</span>
-        </div>
-        <div class="bottom-nav-item" onclick="showPage('sessions')">
-            <i class="fa-solid fa-calendar-check"></i><span>الجلسات</span>
-        </div>
-        <div class="bottom-nav-item" onclick="showPage('settings')">
-            <i class="fa-solid fa-gear"></i><span>إعدادات</span>
-        </div>
+        <button class="nav-btn active" onclick="showPage('home', this)">
+            <i class="fa-solid fa-house"></i>
+            <span>الرئيسية</span>
+        </button>
+        <button class="nav-btn" onclick="showPage('patients', this)">
+            <i class="fa-solid fa-users"></i>
+            <span>المرضى</span>
+        </button>
+        <button class="nav-btn" onclick="showPage('add', this)">
+            <div class="fab"><i class="fa-solid fa-plus"></i></div>
+            <span>إضافة</span>
+        </button>
+        <button class="nav-btn" onclick="showPage('sessions', this)">
+            <i class="fa-solid fa- calendar-check"></i>
+            <span>الجلسات</span>
+        </button>
+        <button class="nav-btn" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>خروج</span>
+        </button>
     </nav>
 </div>
 
 <script>
-    function showPage(pageId) {
-        // أخفي كل الصفحات
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        // أظهر الصفحة المطلوبة
-        document.getElementById(pageId).classList.add('active');
+// البيانات (تخزن في المتصفح)
+let patients = JSON.parse(localStorage.getItem('patients')) || [];
+let sessions = JSON.parse(localStorage.getItem('sessions')) || [];
 
-        // تحديث شكل الأزرار في القائمة الجانبية
-        document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-        // تحديث الشريط السفلي
-        document.querySelectorAll('.bottom-nav-item').forEach(btn => btn.classList.remove('active'));
-        
-        // تمييز الزر النشط
-        event.currentTarget.classList.add('active');
-        
-        console.log("تم الانتقال إلى صفحة: " + pageId);
+function handleLogin() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    updateUI();
+}
+
+function handleLogout() {
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+}
+
+function showPage(pageId, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + pageId).classList.add('active');
+    
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+function savePatient() {
+    const name = document.getElementById('p-name').value;
+    const phone = document.getElementById('p-phone').value;
+    const dob = document.getElementById('p-dob').value;
+
+    if(!name) return alert('يرجى إدخال الاسم');
+
+    patients.push({ name, phone, dob });
+    localStorage.setItem('patients', JSON.stringify(patients));
+    
+    alert('تم حفظ المريضة بنجاح');
+    document.getElementById('p-name').value = '';
+    showPage('patients', document.querySelector('[onclick*="patients"]'));
+    updateUI();
+}
+
+function updateUI() {
+    document.getElementById('count-patients').innerText = patients.length;
+    document.getElementById('count-sessions').innerText = sessions.length;
+
+    // تحديث قائمة المرضى في الجدول
+    const list = document.getElementById('patients-list');
+    list.innerHTML = '';
+    patients.forEach((p, index) => {
+        list.innerHTML += `<tr>
+            <td>${p.name}</td>
+            <td>${p.phone}</td>
+            <td><button class="btn-sm btn-danger" onclick="deletePatient(${index})">حذف</button></td>
+        </tr>`;
+    });
+
+    // تحديث قائمة المريضات في السيلكت (لإضافة جلسة)
+    const select = document.getElementById('session-patient');
+    select.innerHTML = '<option value="">اختر مريضة...</option>';
+    patients.forEach(p => {
+        select.innerHTML += `<option value="${p.name}">${p.name}</option>`;
+    });
+}
+
+function deletePatient(index) {
+    if(confirm('هل أنتِ متأكدة من الحذف؟')) {
+        patients.splice(index, 1);
+        localStorage.setItem('patients', JSON.stringify(patients));
+        updateUI();
     }
-</script>
+}
 
+function saveSession() {
+    const pName = document.getElementById('session-patient').value;
+    const price = document.getElementById('session-price').value;
+
+    if(!pName || !price) return alert('يرجى ملء البيانات');
+
+    sessions.push({ pName, price, date: new Date().toLocaleDateString() });
+    localStorage.setItem('sessions', JSON.stringify(sessions));
+    
+    alert('تم تسجيل الجلسة');
+    updateUI();
+    showPage('home', document.querySelector('[onclick*="home"]'));
+}
+
+// تشغيل التحديث عند البدء
+updateUI();
+
+</script>
 </body>
-</html>
+        </html>
+        
