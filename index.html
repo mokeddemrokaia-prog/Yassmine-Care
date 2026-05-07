@@ -1,200 +1,167 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yassmine Golden Care ✦ إدارة العيادة</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yassmine Golden Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --main-gradient: linear-gradient(135deg, #b83b5e 0%, #6a2c70 100%);
+            --rose-pale: #fdf0f4;
+            --text-dark: #2d1a24;
+            --rose-deep: #d4748e;
+            --shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
 
-<style>
-/* نفس الألوان والستايل تاع كلوود اللي عجبك */
-:root {
-  --rose:#d4748e;--rose-deep:#b85572;--rose-light:#f5d0dc;
-  --rose-pale:#fdf0f4;--rose-blush:#fce8ef;
-  --gold:#c9a96e;--gold-deep:#a07840;--gold-light:#f0e0c0;
-  --plum:#7a4d62;--mint:#4db89a;
-  --bg:#faf6f8;--surface:#ffffff;
-  --text:#2d1a24;--text-mid:#6b3d52;--text-soft:#b08898;
-  --border:rgba(212,116,142,.18);
-  --shadow:0 4px 24px rgba(180,80,110,.10);
-  --radius:16px;--radius-sm:10px;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #faf6f8; color: var(--text-dark); padding-bottom: 90px; }
 
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text); padding-bottom: 80px;}
+        /* HEADER */
+        .header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: white; }
+        .header-icons { display: flex; gap: 15px; }
+        .header-icons i { font-size: 20px; color: #333; }
 
-/* إخفاء الصفحات */
-.page { display: none; animation: fadeIn 0.3s ease; padding: 20px; }
-.page.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* MAIN CARD - روح كلوود */
+        .hero-card {
+            margin: 15px;
+            padding: 25px;
+            background: var(--main-gradient);
+            border-radius: 25px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(184, 59, 94, 0.3);
+        }
+        .hero-card::before {
+            content: "✦"; position: absolute; top: 10px; left: 20px; font-size: 40px; opacity: 0.2;
+        }
+        .hero-title { font-size: 0.9rem; opacity: 0.9; text-align: left; display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
+        .hero-value { font-size: 2.5rem; font-weight: 800; text-align: center; margin: 15px 0; }
+        .hero-stats { display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; }
+        .hero-stat-item { text-align: center; }
+        .hero-stat-num { display: block; font-size: 1.2rem; font-weight: 700; }
+        .hero-stat-label { font-size: 0.7rem; opacity: 0.8; }
 
-/* --- تصميم الشريط السفلي الجديد (أنيق وبسيط) --- */
-.bottom-nav {
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  height: 65px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(180,80,110,0.2);
-  border: 1px solid var(--border);
-  z-index: 1000;
-}
+        /* GRID STATS */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 15px; }
+        .small-card {
+            background: white; padding: 20px; border-radius: 20px; box-shadow: var(--shadow);
+            position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center;
+        }
+        .small-card::after {
+            content: ""; position: absolute; top: -10px; right: -10px; width: 50px; height: 50px; border-radius: 50%;
+        }
+        .card-1::after { background: #f0e0c0; opacity: 0.5; }
+        .card-2::after { background: #f5d0dc; opacity: 0.5; }
+        
+        .small-card-num { font-size: 1.8rem; font-weight: 800; color: #333; }
+        .small-card-label { font-size: 0.75rem; color: #888; margin-top: 5px; }
+        .card-icon { font-size: 1.5rem; margin-bottom: 10px; }
 
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--text-soft);
-  text-decoration: none;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-  flex: 1;
-}
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; background: white;
+            display: flex; justify-content: space-around; padding: 12px 0;
+            border-top: 1px solid #eee; box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+        }
+        .nav-link { text-align: center; color: #b08898; text-decoration: none; transition: 0.3s; flex: 1; }
+        .nav-link i { font-size: 22px; display: block; margin-bottom: 4px; }
+        .nav-link span { font-size: 11px; font-weight: 600; }
+        .nav-link.active { color: var(--rose-deep); }
 
-.nav-item i {
-  font-size: 20px;
-  margin-bottom: 4px;
-}
-
-.nav-item.active {
-  color: var(--rose-deep);
-}
-
-/* الزر الكبير في الوسط للإضافة */
-.nav-add-btn {
-  background: linear-gradient(135deg, var(--rose-deep), var(--plum));
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 24px;
-  margin-top: -35px;
-  box-shadow: 0 8px 20px rgba(180,80,110,0.4);
-  border: 4px solid var(--bg);
-}
-
-/* ستايل البطاقات (نفس كلوود) */
-.stat-card { background: #fff; border-radius: var(--radius); padding: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 15px; }
-.stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--rose-deep); }
-.stat-label { color: var(--text-soft); font-size: 0.9rem; }
-
-.panel { background: #fff; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 20px; }
-.panel-head { padding: 15px; background: var(--rose-pale); color: var(--rose-deep); font-weight: bold; border-bottom: 1px solid var(--border); }
-.panel-body { padding: 15px; }
-
-/* الفليتر أو الانبوتس */
-.form-control { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--rose-pale); font-family: 'Tajawal'; }
-.btn-main { width: 100%; padding: 12px; background: var(--rose-deep); color: white; border: none; border-radius: var(--radius-sm); font-weight: bold; cursor: pointer; }
-
-</style>
+        /* PAGES */
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
 </head>
 <body>
 
-<div id="home" class="page active">
-    <div style="text-align: center; margin-bottom: 25px;">
-        <h2 style="font-family: 'Playfair Display'; color: var(--rose-deep);">Yassmine Golden Care</h2>
-        <p style="color: var(--text-soft);">مرحباً بكِ مجدداً</p>
+    <div class="header">
+        <div class="header-icons">
+            <i class="fa-solid fa-bell"></i>
+            <i class="fa-solid fa-user-circle"></i>
+        </div>
+        <div style="font-weight: 700;">لوحة التحكم</div>
     </div>
-    
-    <div class="stat-card">
-        <div class="stat-value" id="total-patients">124</div>
-        <div class="stat-label">إجمالي المرضى</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-value">8</div>
-        <div class="stat-label">جلسات اليوم</div>
-    </div>
-</div>
 
-<div id="patients" class="page">
-    <div class="panel">
-        <div class="panel-head">قائمة المرضى</div>
-        <div class="panel-body">
-            <input type="text" class="form-control" placeholder="ابحثي عن مريضة...">
-            <div id="list-container" style="margin-top: 15px;">
-                <p style="text-align: center; color: var(--text-soft);">لا يوجد مرضى حالياً</p>
+    <div id="home" class="page active">
+        <div class="hero-card">
+            <div class="hero-title">صافي الربح الإجمالي 💰</div>
+            <div class="hero-value">0</div>
+            <div style="text-align: center; font-size: 0.8rem; opacity: 0.8; margin-bottom: 10px;">دينار جزائري</div>
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num">0</span>
+                    <span class="hero-stat-label">إجمالي الإيرادات دج</span>
+                </div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num">0</span>
+                    <span class="hero-stat-label">إجمالي المصاريف دج</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
+                <strong>0</strong> جلسة مسجلة
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="small-card card-1">
+                <span class="small-card-num">1</span>
+                <span class="small-card-label">خدمة متاحة</span>
+            </div>
+            <div class="small-card card-2">
+                <span class="small-card-num">1</span>
+                <span class="small-card-label">مريضة مسجلة</span>
+            </div>
+            <div class="small-card">
+                <div class="card-icon">💸</div>
+                <span class="small-card-num">0</span>
+                <span class="small-card-label">مصروف مسجل</span>
+            </div>
+            <div class="small-card">
+                <div class="card-icon">📅</div>
+                <span class="small-card-num">0</span>
+                <span class="small-card-label">مواعيد قادمة</span>
             </div>
         </div>
     </div>
-</div>
 
-<div id="add-patient" class="page">
-    <div class="panel">
-        <div class="panel-head">إضافة مريضة جديدة</div>
-        <div class="panel-body">
-            <label>اسم المريضة</label>
-            <input type="text" id="name" class="form-control" placeholder="أدخلي الاسم">
-            <label>رقم الهاتف</label>
-            <input type="tel" id="phone" class="form-control" placeholder="05/06/07...">
-            <label>السعر الافتراضي للجلسة</label>
-            <input type="number" id="price" class="form-control" placeholder="0.00">
-            <button class="btn-main" onclick="addNewPatient()">حفظ المريضة</button>
+    <div id="patients" class="page" style="padding: 20px;">
+        <h3 style="margin-bottom: 20px;">قائمة المريضات</h3>
+        <div style="background: white; padding: 15px; border-radius: 15px; box-shadow: var(--shadow);">
+            <p style="color: #888; text-align: center;">لا يوجد بيانات لعرضها</p>
         </div>
     </div>
-</div>
 
-<nav class="bottom-nav">
-    <div class="nav-item active" onclick="showPage('home', this)">
-        <i class="fas fa-chart-pie"></i>
-        <span>الرئيسية</span>
-    </div>
-    
-    <div class="nav-item" onclick="showPage('patients', this)">
-        <i class="fas fa-users"></i>
-        <span>المرضى</span>
-    </div>
+    <nav class="bottom-nav">
+        <a href="#" class="nav-link active" onclick="showPage('home', this)">
+            <i class="fa-solid fa-house"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="#" class="nav-link" onclick="showPage('patients', this)">
+            <i class="fa-solid fa-users"></i>
+            <span>المرضى</span>
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>الجلسات</span>
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>إعدادات</span>
+        </a>
+    </nav>
 
-    <div class="nav-add-btn" onclick="showPage('add-patient', this)">
-        <i class="fas fa-plus"></i>
-    </div>
-
-    <div class="nav-item">
-        <i class="fas fa-calendar-alt"></i>
-        <span>المواعيد</span>
-    </div>
-
-    <div class="nav-item">
-        <i class="fas fa-cog"></i>
-        <span>إعدادات</span>
-    </div>
-</nav>
-
-<script>
-function showPage(pageId, element) {
-    // إخفاء كل الصفحات
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // إظهار الصفحة المطلوبة
-    document.getElementById(pageId).classList.add('active');
-    
-    // تحديث شكل الأزرار
-    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-    if(element.classList.contains('nav-item')) {
-        element.classList.add('active');
-    }
-}
-
-function addNewPatient() {
-    let name = document.getElementById('name').value;
-    if(name) {
-        alert("تم إضافة المريضة: " + name);
-        showPage('patients', document.querySelector('.nav-item:nth-child(2)'));
-    } else {
-        alert("يرجى إدخال الاسم");
-    }
-}
-</script>
-
+    <script>
+        function showPage(id, el) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            el.classList.add('active');
+        }
+    </script>
 </body>
 </html>
