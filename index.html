@@ -3,164 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yassmine Golden Care</title>
+    <title>Yassmine Golden Care ✦</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --main-gradient: linear-gradient(135deg, #b83b5e 0%, #6a2c70 100%);
-            --rose-pale: #fdf0f4;
-            --text-dark: #2d1a24;
             --rose-deep: #d4748e;
-            --shadow: 0 10px 20px rgba(0,0,0,0.08);
+            --text-dark: #2d1a24;
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Tajawal', sans-serif; background-color: #faf6f8; color: var(--text-dark); padding-bottom: 90px; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #faf6f8; color: var(--text-dark); padding-bottom: 100px; }
 
         /* HEADER */
-        .header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: white; }
+        .header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: white; position: sticky; top: 0; z-index: 100; }
         .header-icons { display: flex; gap: 15px; }
-        .header-icons i { font-size: 20px; color: #333; }
 
-        /* MAIN CARD - روح كلوود */
+        /* HERO CARD (CLOUD STYLE) */
         .hero-card {
-            margin: 15px;
-            padding: 25px;
-            background: var(--main-gradient);
-            border-radius: 25px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(184, 59, 94, 0.3);
+            margin: 15px; padding: 25px; background: var(--main-gradient);
+            border-radius: 25px; color: white; position: relative; overflow: hidden; box-shadow: 0 15px 30px rgba(184, 59, 94, 0.3);
         }
-        .hero-card::before {
-            content: "✦"; position: absolute; top: 10px; left: 20px; font-size: 40px; opacity: 0.2;
-        }
-        .hero-title { font-size: 0.9rem; opacity: 0.9; text-align: left; display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
-        .hero-value { font-size: 2.5rem; font-weight: 800; text-align: center; margin: 15px 0; }
-        .hero-stats { display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; }
+        .hero-card::before { content: "✦"; position: absolute; top: 10px; left: 20px; font-size: 40px; opacity: 0.2; }
+        .hero-title { font-size: 0.9rem; text-align: right; display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
+        .hero-value { font-size: 2.6rem; font-weight: 800; text-align: center; margin: 10px 0; }
+        .hero-stats { display: grid; grid-template-columns: 1fr 1fr; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; }
         .hero-stat-item { text-align: center; }
-        .hero-stat-num { display: block; font-size: 1.2rem; font-weight: 700; }
-        .hero-stat-label { font-size: 0.7rem; opacity: 0.8; }
 
         /* GRID STATS */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 15px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; }
         .small-card {
-            background: white; padding: 20px; border-radius: 20px; box-shadow: var(--shadow);
-            position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center;
+            background: white; padding: 15px; border-radius: 20px; box-shadow: var(--shadow);
+            display: flex; flex-direction: column; align-items: center; position: relative;
         }
-        .small-card::after {
-            content: ""; position: absolute; top: -10px; right: -10px; width: 50px; height: 50px; border-radius: 50%;
-        }
-        .card-1::after { background: #f0e0c0; opacity: 0.5; }
-        .card-2::after { background: #f5d0dc; opacity: 0.5; }
-        
-        .small-card-num { font-size: 1.8rem; font-weight: 800; color: #333; }
-        .small-card-label { font-size: 0.75rem; color: #888; margin-top: 5px; }
-        .card-icon { font-size: 1.5rem; margin-bottom: 10px; }
+        .small-card-num { font-size: 1.6rem; font-weight: 800; }
+        .small-card-label { font-size: 0.75rem; color: #888; }
+        .icon-bg { position: absolute; top: 5px; right: 10px; font-size: 1.2rem; opacity: 0.8; }
 
-        /* BOTTOM NAV */
+        /* BOTTOM NAVIGATION */
         .bottom-nav {
             position: fixed; bottom: 0; width: 100%; background: white;
-            display: flex; justify-content: space-around; padding: 12px 0;
-            border-top: 1px solid #eee; box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 10px 0 25px; border-top: 1px solid #eee; z-index: 1000;
         }
-        .nav-link { text-align: center; color: #b08898; text-decoration: none; transition: 0.3s; flex: 1; }
-        .nav-link i { font-size: 22px; display: block; margin-bottom: 4px; }
-        .nav-link span { font-size: 11px; font-weight: 600; }
-        .nav-link.active { color: var(--rose-deep); }
+        .nav-btn { text-align: center; color: #b08898; cursor: pointer; flex: 1; transition: 0.3s; }
+        .nav-btn.active { color: var(--rose-deep); }
+        .nav-btn i { font-size: 20px; display: block; margin-bottom: 3px; }
+        .nav-btn span { font-size: 10px; font-weight: 600; }
 
-        /* PAGES */
-        .page { display: none; }
+        /* الزر الكبير للإضافة */
+        .add-main-btn {
+            background: var(--main-gradient); width: 55px; height: 55px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; margin-top: -45px; border: 5px solid #faf6f8;
+            box-shadow: 0 8px 20px rgba(184, 59, 94, 0.4);
+        }
+
+        /* MODAL (FOR ADDING STUFF) */
+        .modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); 
+            display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px;
+        }
+        .modal.active { display: flex; }
+        .modal-content { background: white; padding: 25px; border-radius: 25px; width: 100%; max-width: 400px; }
+        .modal-content h3 { margin-bottom: 20px; color: var(--rose-deep); }
+        input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 12px; font-family: 'Tajawal'; }
+        .btn-save { width: 100%; padding: 12px; background: var(--main-gradient); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+        .page { display: none; padding: 15px; }
         .page.active { display: block; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="header-icons">
-            <i class="fa-solid fa-bell"></i>
-            <i class="fa-solid fa-user-circle"></i>
-        </div>
-        <div style="font-weight: 700;">لوحة التحكم</div>
+        <div class="header-icons"><i class="fa-solid fa-bell"></i> <i class="fa-solid fa-circle-user"></i></div>
+        <div style="font-weight: 800;">Yassmine Golden Care</div>
     </div>
 
-    <div id="home" class="page active">
+    <div id="home-page" class="page active">
         <div class="hero-card">
             <div class="hero-title">صافي الربح الإجمالي 💰</div>
-            <div class="hero-value">0</div>
-            <div style="text-align: center; font-size: 0.8rem; opacity: 0.8; margin-bottom: 10px;">دينار جزائري</div>
+            <div class="hero-value" id="total-profit">0</div>
+            <div style="text-align: center; font-size: 0.8rem; opacity: 0.8;">دينار جزائري</div>
             <div class="hero-stats">
-                <div class="hero-stat-item">
-                    <span class="hero-stat-num">0</span>
-                    <span class="hero-stat-label">إجمالي الإيرادات دج</span>
-                </div>
-                <div class="hero-stat-item">
-                    <span class="hero-stat-num">0</span>
-                    <span class="hero-stat-label">إجمالي المصاريف دج</span>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
-                <strong>0</strong> جلسة مسجلة
+                <div class="hero-stat-item"><span id="total-revenue">0</span><br><small>إيرادات</small></div>
+                <div class="hero-stat-item"><span id="total-expenses">0</span><br><small>مصاريف</small></div>
             </div>
         </div>
 
         <div class="stats-grid">
-            <div class="small-card card-1">
-                <span class="small-card-num">1</span>
-                <span class="small-card-label">خدمة متاحة</span>
-            </div>
-            <div class="small-card card-2">
-                <span class="small-card-num">1</span>
+            <div class="small-card">
+                <span class="icon-bg">👩‍⚕️</span>
+                <span class="small-card-num" id="patient-count">0</span>
                 <span class="small-card-label">مريضة مسجلة</span>
             </div>
             <div class="small-card">
-                <div class="card-icon">💸</div>
-                <span class="small-card-num">0</span>
-                <span class="small-card-label">مصروف مسجل</span>
-            </div>
-            <div class="small-card">
-                <div class="card-icon">📅</div>
-                <span class="small-card-num">0</span>
+                <span class="icon-bg">📅</span>
+                <span class="small-card-num" id="appointment-count">0</span>
                 <span class="small-card-label">مواعيد قادمة</span>
             </div>
         </div>
     </div>
 
-    <div id="patients" class="page" style="padding: 20px;">
-        <h3 style="margin-bottom: 20px;">قائمة المريضات</h3>
-        <div style="background: white; padding: 15px; border-radius: 15px; box-shadow: var(--shadow);">
-            <p style="color: #888; text-align: center;">لا يوجد بيانات لعرضها</p>
+    <div id="patients-page" class="page">
+        <h3 style="margin-bottom:15px">قائمة المرضى</h3>
+        <div id="patients-list"></div>
+    </div>
+
+    <div id="add-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title">إضافة مريضة</h3>
+            <div id="form-container">
+                <div id="form-patient">
+                    <input type="text" id="p-name" placeholder="اسم المريضة">
+                    <input type="tel" id="p-phone" placeholder="رقم الهاتف">
+                    <button class="btn-save" onclick="savePatient()">حفظ المريضة</button>
+                </div>
+                <div id="form-session" style="display:none">
+                    <select id="s-patient"></select>
+                    <input type="number" id="s-price" placeholder="سعر الجلسة (دج)">
+                    <button class="btn-save" onclick="saveSession()">تسجيل الجلسة</button>
+                </div>
+            </div>
+            <button onclick="closeModal()" style="margin-top:10px; background:none; border:none; color:gray; width:100%">إلغاء</button>
         </div>
     </div>
 
     <nav class="bottom-nav">
-        <a href="#" class="nav-link active" onclick="showPage('home', this)">
-            <i class="fa-solid fa-house"></i>
-            <span>الرئيسية</span>
-        </a>
-        <a href="#" class="nav-link" onclick="showPage('patients', this)">
-            <i class="fa-solid fa-users"></i>
-            <span>المرضى</span>
-        </a>
-        <a href="#" class="nav-link">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span>الجلسات</span>
-        </a>
-        <a href="#" class="nav-link">
-            <i class="fa-solid fa-gear"></i>
-            <span>إعدادات</span>
-        </a>
+        <div class="nav-btn active" onclick="showPage('home-page', this)"><i class="fa-solid fa-house"></i><span>الرئيسية</span></div>
+        <div class="nav-btn" onclick="showPage('patients-page', this)"><i class="fa-solid fa-users"></i><span>المرضى</span></div>
+        
+        <div class="add-main-btn" onclick="openAddMenu()">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+
+        <div class="nav-btn"><i class="fa-solid fa-calendar-check"></i><span>المواعيد</span></div>
+        <div class="nav-btn"><i class="fa-solid fa-gear"></i><span>إعدادات</span></div>
     </nav>
 
     <script>
+        let db = { patients: [], sessions: [], appointments: [] };
+
         function showPage(id, el) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            if(el) el.classList.add('active');
+        }
+
+        function openAddMenu() {
+            document.getElementById('add-modal').classList.add('active');
+            document.getElementById('form-patient').style.display = 'block';
+            document.getElementById('form-session').style.display = 'none';
+            document.getElementById('modal-title').innerText = "إضافة مريضة جديدة";
+        }
+
+        function closeModal() { document.getElementById('add-modal').classList.remove('active'); }
+
+        function savePatient() {
+            let name = document.getElementById('p-name').value;
+            let phone = document.getElementById('p-phone').value;
+            if(!name) return alert("أدخلي الاسم");
             
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            el.classList.add('active');
+            db.patients.push({name, phone});
+            updateDashboard();
+            closeModal();
+            alert("تم الحفظ بنجاح ✦");
+        }
+
+        function updateDashboard() {
+            document.getElementById('patient-count').innerText = db.patients.length;
+            let list = document.getElementById('patients-list');
+            list.innerHTML = db.patients.map(p => `<div style="background:white; padding:15px; border-radius:15px; margin-bottom:10px; box-shadow:var(--shadow)"><b>${p.name}</b><br><small>${p.phone}</small></div>`).join('');
+            
+            // تحديث قائمة الأسماء في نافذة الجلسات
+            let select = document.getElementById('s-patient');
+            select.innerHTML = db.patients.map(p => `<option>${p.name}</option>`).join('');
+        }
+
+        // تحويل الزر لفتح إضافة جلسة (كمثال)
+        function openSessionAdd() {
+            document.getElementById('form-patient').style.display = 'none';
+            document.getElementById('form-session').style.display = 'block';
+            document.getElementById('modal-title').innerText = "تسجيل جلسة/سعر";
         }
     </script>
 </body>
